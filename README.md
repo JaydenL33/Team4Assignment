@@ -6,13 +6,12 @@ The Following Project is to create a Terminal Assignment Solution using Machine 
 Optimization. 
 
 The follwing info can be found on graphs inside of the Optimization Task description from UTS Online. 
-12 x 12 Grid with Terminal in the Vertical and Concentrator in the Horizontal. 
+12 x 8 Grid with Terminal in the Vertical and Concentrator in the Horizontal. 
 
 The process of optimisation relates to the cost of each Concentrator Connection. The cost of each connection 
 is defined inside of the cost table in an excel spreadsheet. 
 
-Array Connectivity(x,y), represented with CONNECT(x,y) will be a table with related horizional and vertical variables as a logic table, either being 
-on or off.
+Array Connectivity(x,y), represented with CONNECT(x,y) will be a table with related horizional and vertical variables as a logic table, either being on or off.
 
 Array Cost(x,y), represented with COST(x,y) with be a table with realted horizional and verticles variables as a integer table. 
 (Cost can be either Money or speed or any measurement of work)
