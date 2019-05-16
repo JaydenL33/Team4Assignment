@@ -1,4 +1,4 @@
-%set up all
+ %set up all
 clear all; 
 
 %import cost table
@@ -57,4 +57,4 @@ for Main = 1:NumberofLoops
             end
         end
         
-        for
+        for RowNumber= 1:N
