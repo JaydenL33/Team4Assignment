@@ -56,3 +56,5 @@ for Main = 1:NumberofLoops
                 TrialsCost(EpochLoop, 1) >= 10000;
             end
         end
+        
+        for
