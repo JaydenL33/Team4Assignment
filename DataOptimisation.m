@@ -1,5 +1,3 @@
- %set up all
-clear all; 
 
 %import cost table
 CostTable=xlsread('CostTable.xlsx');
@@ -58,3 +56,4 @@ for Main = 1:NumberofLoops
         end
         
         for RowNumber= 1:N
+clear all;
