@@ -47,6 +47,8 @@ for Main = 1:NumberofLoops
             ConConnects(CostTableRow(RowNum)+ 1) = ConConnects(CostTableRow(RowNum)+1) +1;
         end  
         
+        change = 10;
+        
         %Checking to see if more than three terminals are connected to one
         %concentrator.
         % If so, assign TrailCost with a large number so that the trail is
