@@ -14,11 +14,11 @@ NumTrials= 50;
 LearningRate=0.001;
 NumberofLoops=200;
 
-% Create Probability Vector. This will adjust itself according to the
-% probability that a certain connection is a minimum.
-ProbVector = ones(1,40); % Start by multiplying by 0.5 so that it 
-                                % is a fifty fifty chance of being a zero 
-                                % or a one.
+% Let's start with the PV and then move on to the BS. We syart the PV with
+% values of 0.5 because the first Epoch of trials should have equally
+% likely 1 and zero.
+
+ProbVector = ones(1,40); % This gives us an array 40 1's
 ProbVector = ProbVector*0.5;     % This sets all the values to 0.5
 
 ConConnects = zeros(8,1); % Empty array with each element representing a concentrator
@@ -36,7 +36,7 @@ for Main = 1:NumberofLoops
         ConConnects  = zeros(8,1);      % each element representing a concentrator.
                                         
         % Create a Random Binary array 12 by 3. 
-        RandomBinary = randi([0 1], 1, 36);
+        RandomBinary = rand([0 1], 1, 36);
         Epoch(EpochLoop, :) = RandomBinary < ProbVector;
         
         RandomBinary = reshape(Epoch(EpochLoop, :), 12,3);
@@ -56,12 +56,4 @@ for Main = 1:NumberofLoops
                 TrialsCost(EpochLoop, 1) >= 10000;
             end
         end
-        
-       for RonNum = 1:N
-           AssoCost = CostTable(CostTableRow(CostNum)+1,RowNum);
-           TrailsCost(EpochLoop,1)
-           
-       end  
-    end
-end
-    
+
