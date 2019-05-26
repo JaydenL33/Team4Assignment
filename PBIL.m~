@@ -27,18 +27,18 @@ for Main = 1:NumberofLoops
     % Calculate the minimum cost of each trail vector
     for EpochLoop = 1:NumTrials
         ConConnects  = zeros(8,1);
-        Epoch(EpochLoop, :) = RandomBinaryCost < PV; %Random Binary array
+        Epoch(EpochLoop, :) = RandomBinaryCost < ProbVector; %Random Binary array
         
         RandomBinaryCost = reshape(Epoch(EpochLoop, :), 12,3);
        
         
         % Create binary matrix (12 by 3)
-        for RowNum = 1:N
-            CostTableRow(RowNum) = ConvertBinary2Number(RandomBinary(RowNum, :));
-            ConConnects(CostTableRow(RowNum)+ 1) = ConConnects(CostTableRow(RowNum)+1) +1;
-        end
-    end
-   
+        %for RowNum = 1:N
+            %CostTableRow(RowNum) = ConvertBinary2Number(RandomBinary(RowNum, :));
+            %ConConnects(CostTableRow(RowNum)+ 1) = ConConnects(CostTableRow(RowNum)+1) +1;
+        %end  
+        
+        
         %Verifying if there are more than three terminals connected to one concentrator
         for NumbConnector = 1:8
             if ConConnects(NumConnector, 1) > 3
