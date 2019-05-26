@@ -7,8 +7,7 @@ clear all;
 
 %% Anonymous Function that converts bits to decimal value
 
-costBin2Dec = @(costIndexBin) ...
-costIndexBin(1)*4 + costIndexBin(2)*2 + costIndexBin(3);
+costBin2Dec = @(costIndexBin) costIndexBin(1)*4 + costIndexBin(2)*2 + costIndexBin(3);
 
 
 %% Customisation Parameters: 
@@ -50,17 +49,38 @@ for Main = 1:NumberofLoops
     Epoch = zeros(NumberofLoops, 1);
     
     for EpochLoop = 1:NumTrials
-        Epoch(EpochLoop,:) = rand(1,36)<probabilityVector;
+        Epoch(EpochLoop,:) = rand(1,36)<ProbVector; 
+        % Concatecates from 1 - NumTrials 1 or 0 as logic variable for this epoch. 
     end
 
-    % Calculate the cost of each trial
-    % vector in order to achieve minimum cost.
+    %Cost Calculations
     for EpochLoop = 1:NumTrials
-        ConConnects  = zeros(8,1);      % each element representing a concentrator.
-                                        
-        % Create a Random Binary array 12 by 3. 
-        RandomBinary = rand([0 1], 8, 12);    
-    end  
+
+        ConConnects = zeros(8,1); % each element representing a concentrator.
+        BinCost = reshape(epoch(epochLoop,:),3,12); %Reshapes the array to make a "binary string."
+        
+        %Convert binary to decimal
+        for NumOfTerminal = 1:12
+            costIndexDec(NumOfTerminal) = costBin2Dec(BinCost(:,NumOfTerminal));
+        
+            ConConnects(costIndexDec(NumOfTerminal)+1) = ...
+            ConConnects(costIndexDec(NumOfTerminal)+1) + 1;
+        end
+        
+        % Retrieve data
+        for NumOfTerminal = 1:12
+            tmp = costTable(costIndexDec(NumOfTerminal)+1,NumOfTerminal);
+            costTrials(epochLoop,1) = costTrials(epochLoop,1) + tmp;
+        end
+        
+        % Check if trial is viable
+        for concentratorNum = 1:8
+           if ConConnects(concentratorNum,1)>3
+               costTrials(epochLoop,1) = 9999;
+           end
+        end
+
+
         
     
 end
