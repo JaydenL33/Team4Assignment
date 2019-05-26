@@ -76,4 +76,7 @@ subplot(2,2,1);
 Plot(MinCost);
 title(MinimumCosts);
 
+%pie chart
+
+
     
