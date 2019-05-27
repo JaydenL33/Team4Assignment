@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Wrote by Jayden Lee
-%Date: 24/05/19
-%Instead of using a Binary String, we are going to use a matrix.
+% Wrote by Jayden Lee
+% Date: 24/05/19
+% PBIL of Cost Data via Matlab Scripting. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clear all; 
 
@@ -40,6 +40,9 @@ CostTable=CostTable(2:9,2:13);
 
 %% End of Array Generation
 
+
+%%%%%%%%%%%%%%% PBIL Implementation %%%%%%%%%%%%%%%%%%%%%%
+
 %% Main Loop
 for Main = 1:NumberofLoops
     
@@ -57,30 +60,54 @@ for Main = 1:NumberofLoops
     for EpochLoop = 1:NumTrials
 
         ConConnects = zeros(8,1); % each element representing a concentrator.
-        BinCost = reshape(epoch(epochLoop,:),3,12); %Reshapes the array to make a "binary string."
-        
-        %Convert binary to decimal
+        BinCost = reshape(epoch(EpochLoop,:),3,12); %Reshapes the array to make a "binary string."
+
+
+
+
+        %This Converts our Decimal Array in a Binary String. 
         for NumOfTerminal = 1:12
             costIndexDec(NumOfTerminal) = costBin2Dec(BinCost(:,NumOfTerminal));
         
-            ConConnects(costIndexDec(NumOfTerminal)+1) = ...
-            ConConnects(costIndexDec(NumOfTerminal)+1) + 1;
+            ConConnects(costIndexDec(NumOfTerminal)+1) = ConConnects(costIndexDec(NumOfTerminal)+1) + 1;
         end
-        
+
+
+
         % Retrieve data
         for NumOfTerminal = 1:12
             tmp = costTable(costIndexDec(NumOfTerminal)+1,NumOfTerminal);
-            costTrials(epochLoop,1) = costTrials(epochLoop,1) + tmp;
+            TrialsCost(EpochLoop,1) = TrialsCost(EpochLoop,1) + tmp;
         end
         
+
         % Check if trial is viable
-        for concentratorNum = 1:8
-           if ConConnects(concentratorNum,1)>3
-               costTrials(epochLoop,1) = 9999;
+        for NumofConc = 1:8
+           if ConConnects(NumofConc,1)>3
+               TrialsCost(EpochLoop,1) = 6666;
            end
         end
 
-
+    % Find minimum value and its index
+    [minumumValue,minIndex] = min(TrialsCost);
+    costMinProgressive(mainLoop) = minumumValue;
+    
+    % Locate minimum epoch and update the probability vector 
+    EpochMin = Epoch(minIndex,:);
+    for i = 1:36
+        if EpochMin(i) > 0
+            ProbVector(1,i) = ProbVector(1,i) + learningRate;
+            if ProbVector(1,i) > 1
+                ProbVector(1,i) = 1;
+            end
+        else
+            ProbVector(1,i) = ProbVector(1,i) - learningRate;
+            if ProbVector(1,i) < 0
+                ProbVector(1,i) = 0;
+            end
+        end
+    end  
+end
         
     
 end
