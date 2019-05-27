@@ -24,7 +24,6 @@
 
 *.locked
 
-TESTPBIL.m
 # Folders
 
-/Assignment2Friends
+/testCode
