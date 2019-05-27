@@ -1,6 +1,8 @@
 
 # Team4DataOptimisation
 
+# WE HAVE A GITHUB IF YOU WANT TO SEE IT WITH TIMELINE. 
+
 #                     A Github Repo for Team 4 of Data Engineering Class's Data Optimisation Project IDEAS: 
 
 The Following Project is to create a Terminal Assignment Solution using Machine Learning / Stochastic Optimization.
