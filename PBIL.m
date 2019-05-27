@@ -100,14 +100,6 @@ for MainLoop = 1:NumberofLoops
     [minVal,minCounter] = min(CostTrials);
     costMinDisplay(MainLoop) = minVal;
 
-      % Test to see if we are finished
-    % if MainLoop > 20
-        % if std(costMinDisplay(1,end-10:end)) == 0
-            % break
-        % end
-    % end
-
-
     % Creates Array minEpoch and does the calculation in order to find minimum Epoch
     minEpoch = Epoch(minCounter,:);
     for i = 1:36
@@ -125,10 +117,11 @@ for MainLoop = 1:NumberofLoops
    end
 
     
-% End the main loop    
+% End of Functionality
+
 end
 
-%% Give some results
+%Data Visualisation
 
 figure
 plot(costMinDisplay);
